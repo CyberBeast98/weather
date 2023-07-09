@@ -1,87 +1,75 @@
 <template>
   <div class="container">
     <div class="search__block">
-      <input type="text" v-model="inputValue" placeholder="Enter city name">
-      <button @click="clickHandler" :disabled="inputValue === null">Search</button>
+      <input v-model="inputValue" type="text" placeholder="Enter city name">
+      <button @click="clickHandler">Search</button>
     </div>
     <span v-if="isError">Wrong city name</span>
-    <div v-else class="weather__block">
-      <img v-if="icon !== null" :src="icon" alt="weather">
-      <p>{{ lat }}</p>
+    <div class="weather__block">
+      <name />
+      <description />
+      <temperature />
     </div>
-    <current-location />
   </div>
 </template>
 
 <script>
-import CurrentLocation            from './components/currentLocation';
-import store                      from './store';
 import { mapState, mapMutations } from 'vuex';
+import store                      from './store';
+import Name                       from './components/name';
+import Temperature                from './components/temperature';
+import Description                from './components/description';
 
 export default {
   name: 'App',
-  components: { CurrentLocation },
+  components: {
+    Description,
+    Temperature,
+    Name
+  },
   data() {
     return {
       inputValue: null,
-      apiKey: '',
-      icon: null,
-      description: null,
-      country: null,
-      city: null
+      apiKey: ''
     }
   },
   computed: {
     ...mapState({
-      lat(state) {
-        return state.lat
-      },
       isError(state) {
-        return state.isError
+        return state.isError;
       }
     }),
     geocording() {
       return `http://api.openweathermap.org/geo/1.0/direct?q=${this.inputValue}&limit=1&appid=${this.apiKey}`;
-    },
-    currentWeather() {
-      return `https://api.openweathermap.org/data/2.5/weather?lat=${this.lat}&lon=${this.lon}&appid=${this.apiKey}`;
     }
   },
   methods: {
-    ...mapMutations({
-      setError: 'setError'
-    }),
+    ...mapMutations({ setError: 'setError' }),
     async clickHandler() {
       await store.dispatch('getGeocording', { geocording: this.geocording })
           .then(() => {
             this.inputValue = null;
             setTimeout(() => this.setError(false), 5000);
-          });
-    },
-    getCurrentWeather() {
-      fetch(this.currentWeather)
-          .then(response => response.json())
-          .then(response => {
-            console.log(response);
-            this.country = response.sys.country;
-            this.city = response.name;
-            this.icon = `http://openweathermap.org/img/w/${response.weather[0].icon}.png`;
-            this.description = response.weather[0].description;
           })
-          .catch(() => this.showErrorMessage());
     }
   }
 }
 </script>
 
 <style>
+* {
+  margin: 0;
+  padding: 0;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   display: flex;
-  justify-content: center;
+  height: 100vh;
+  justify-content: start;
   flex-direction: column;
 }
 
@@ -89,6 +77,9 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 100vh;
+  padding-top: 20px;
+  background-color: #74e6f7;
 }
 
 .search__block {
@@ -97,12 +88,38 @@ export default {
   align-items: center;
 }
 
+.search__block input {
+  padding: 10px 5px;
+  border: none;
+  border-radius: 4px 0 0 4px;
+  font-size: 20px;
+}
+
+.search__block input:focus {
+  outline: none;
+}
+
+.search__block button {
+  border: none;
+  border-left: 1px solid #edf0f0;
+  border-radius: 0 4px 4px 0;
+  padding: 10px 5px;
+  background-color: #ffffff;
+  color: #C0C0C0;
+  font-size: 20px;
+}
+
+
 .weather__block {
-  max-width: 200px;
-  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 250px;
+  margin-top: 50px;
   padding: 20px;
   text-align: center;
   border-radius: 4px;
+  background-color: #ffffff;
   box-shadow: 0 0 49px -17px rgba(0, 0, 0, 0.75);
 }
 </style>
