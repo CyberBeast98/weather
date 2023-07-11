@@ -1,17 +1,17 @@
 <template>
   <div class="temperature__block">
-    <p class="temperature__text--description">Temperature</p>
+    <p class="description">Temperature</p>
     <div class="temperature__block-inner">
-      <p class="temperature__text temperature__text--min">Min: {{ convertationToCelsius(main.temp_min) }}<sup>o</sup>C</p>
+      <p class="temperature__text">Min: {{ convertationToCelsius(main.temp_min) }}<sup>o</sup>C</p>
       <p class="temperature__text">Max: {{ convertationToCelsius(main.temp_max) }}<sup>o</sup>C</p>
     </div>
     <div class="temperature__block-inner">
-      <p class="temperature__text temperature__text--min">Min: {{ main.temp_min }}K</p>
-      <p class="temperature__text">Max: {{ main.temp_max }}K</p>
+      <p class="temperature__text">Min: {{ convertationToFahrenheit(main.temp_min) }}<sup>o</sup>F</p>
+      <p class="temperature__text">Max: {{ convertationToFahrenheit(main.temp_max) }}<sup>o</sup>F</p>
     </div>
     <div class="temperature__block-inner">
-      <p class="temperature__text temperature__text--min">Min: {{ convertationToFahrenheit(main.temp_min) }}<sup>o</sup>F</p>
-      <p class="temperature__text">Max: {{ convertationToFahrenheit(main.temp_max) }}<sup>o</sup>F</p>
+      <p class="temperature__text">Min: {{ main.temp_min }}K</p>
+      <p class="temperature__text">Max: {{ main.temp_max }}K</p>
     </div>
   </div>
 </template>
@@ -40,14 +40,10 @@ export default {
 </script>
 <style scoped>
 .temperature__block {
+  width: 100%;
   padding: 10px 0;
+  margin-bottom: 10px;
   border-bottom: 1px solid #edf0f0;
-}
-
-.temperature__text--description {
-  margin-bottom: 5px;
-  font-size: 20px;
-  text-decoration: underline;
 }
 
 .temperature__block-inner {
@@ -57,11 +53,7 @@ export default {
 
 .temperature__text {
   width: 110px;
-  margin-top: 5px;
+  margin-bottom: 5px;
   text-align: start;
-}
-
-.temperature__text--min {
-  margin-right: 10px;
 }
 </style>

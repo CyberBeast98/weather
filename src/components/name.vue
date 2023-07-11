@@ -1,11 +1,15 @@
 <template>
   <p class="name__block">{{ cityName }}, {{ countryName }}</p>
+  <Time :timeUNIX="date"/>
 </template>
 
 <script>
 import { mapState } from 'vuex';
+import Time         from './time';
+
 export default {
   name: 'Name',
+  components: { Time },
   computed: {
     ...mapState({
       countryName(state) {
@@ -13,6 +17,9 @@ export default {
       },
       cityName(state) {
         return state.name.city;
+      },
+      date(state) {
+        return state.date
       }
     })
   }

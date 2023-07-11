@@ -1,5 +1,5 @@
 <template>
-  <div class="description__block">
+  <div class="description__block full-width">
     <img :src="weatherIcon" class="description__image" alt="weather">
     <span>{{ weather.description }}</span>
   </div>
@@ -27,7 +27,6 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
   padding: 10px 0;
   border-bottom: 1px solid #edf0f0;
   text-transform: uppercase;
