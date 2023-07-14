@@ -8,8 +8,19 @@
   width: 100%;
 }
 
+.link {
+  text-decoration: none;
+  color: #2c3e50;
+}
+
 .flex-center {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.active-link {
+  color: #74e6f7;
+  font-size: 20px !important;
+  transition: 0.3s;
 }
