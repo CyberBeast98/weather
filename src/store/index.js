@@ -15,7 +15,9 @@ const store = createStore({
     icon: null,
     isError: false,
     apiKey: '',
-    weatherEndpoint: null
+    weatherEndpoint: null,
+    forecast5DayEndpoint: null,
+    isSuccess: null
   },
 
   actions: {
@@ -28,8 +30,12 @@ const store = createStore({
           context.commit('setCountryName', response[0].country);
           context.commit('setCityName', response[0].name);
           context.commit('setWeatherEndpoint', `${url}data/2.5/weather?lat=${response[0].lat}&lon=${response[0].lon}&appid=${context.state.apiKey}`)
+          context.commit('setForecast5DayEndpoint', `${url}data/2.5/forecast?lat=${response[0].lat}&lon=${response[0].lon}&appid=${context.state.apiKey}`)
         })
-        .then(() => context.dispatch('getCurrentWeather'))
+        .then(() => {
+          context.dispatch('getCurrentWeather');
+          context.dispatch('get5DayWeather');
+        })
         .catch(() => {
           context.commit('setError', true);
           context.commit('setCountryName', null);
@@ -45,6 +51,14 @@ const store = createStore({
           context.commit('setMain', response.main);
           context.commit('setWind', response.wind);
           context.commit('setDate', response.dt);
+          context.commit('setSuccess', response.cod);
+        });
+    },
+    get5DayWeather(context) {
+      fetch(context.state.forecast5DayEndpoint)
+        .then(response => response.json())
+        .then(response => {
+          console.log(response);
         });
     }
   },
@@ -57,6 +71,9 @@ const store = createStore({
     },
     setWeatherEndpoint(state, data) {
       state.weatherEndpoint = data;
+    },
+    setForecast5DayEndpoint(state, data) {
+      state.forecast5DayEndpoint = data;
     },
     setWeatherIcon(state, data) {
       state.icon = data;
@@ -75,6 +92,9 @@ const store = createStore({
     },
     setError(state, status) {
       state.isError = status;
+    },
+    setSuccess(state, status) {
+      state.isSuccess = status;
     },
   }
 });
