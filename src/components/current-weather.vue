@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { mapMutations, mapState } from "vuex";
+import { mapMutations, mapState } from 'vuex';
 import Card                       from './card/index';
 import store                      from '../store';
 
@@ -77,7 +77,7 @@ export default {
           .then(() => {
             this.inputValue = null;
             setTimeout(() => this.setError(false), 5000);
-          })
+          });
     }
   }
 }

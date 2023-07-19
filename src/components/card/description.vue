@@ -14,7 +14,7 @@ export default {
   },
   computed: {
     setIcon() {
-      return `http://api.openweathermap.org/img/w/${this.icon}.png`
+      return `http://api.openweathermap.org/img/w/${this.icon}.png`;
     }
   }
 }

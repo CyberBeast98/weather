@@ -30,8 +30,8 @@ const store = createStore({
         .then(response => {
           context.commit('setCountryName', response[0].country);
           context.commit('setCityName', response[0].name);
-          context.commit('setWeatherEndpoint', `${url}data/2.5/weather?lat=${response[0].lat}&lon=${response[0].lon}&appid=${context.state.apiKey}`)
-          context.commit('setForecast5DayEndpoint', `${url}data/2.5/forecast?lat=${response[0].lat}&lon=${response[0].lon}&appid=${context.state.apiKey}`)
+          context.commit('setWeatherEndpoint', `${url}data/2.5/weather?lat=${response[0].lat}&lon=${response[0].lon}&appid=${context.state.apiKey}`);
+          context.commit('setForecast5DayEndpoint', `${url}data/2.5/forecast?lat=${response[0].lat}&lon=${response[0].lon}&appid=${context.state.apiKey}`);
         })
         .then(() => {
           context.dispatch('getCurrentWeather');
@@ -62,11 +62,7 @@ const store = createStore({
     get5DayWeather(context) {
       fetch(context.state.forecast5DayEndpoint)
         .then(response => response.json())
-        .then(response => {
-          context.commit('setWeatherList', response.list);
-
-          console.log(context.state.weatherList);
-        });
+        .then(response => context.commit('setWeatherList', response.list));
     }
   },
   mutations: {
@@ -112,4 +108,4 @@ const store = createStore({
   }
 });
 
-export default store
+export default store;

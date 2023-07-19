@@ -18,13 +18,13 @@ export default {
         day: 'numeric',
         month: 'short',
         year: 'numeric'
-      })
+      });
 
       const time = this.setDate.toLocaleTimeString('en-US', {
         hour12: true,
         hour: 'numeric',
         minute: 'numeric'
-      })
+      });
 
       return `${date}, ${time}`;
     }
