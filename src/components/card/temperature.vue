@@ -17,17 +17,9 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
-
 export default {
   name: 'Temperature',
-  computed: {
-    ...mapState({
-      main(state) {
-        return state.main;
-      }
-    })
-  },
+  props: { main: { type: Object } },
   methods: {
     convertationToCelsius(temperature) {
       return (Number(temperature) - 273).toFixed(0);

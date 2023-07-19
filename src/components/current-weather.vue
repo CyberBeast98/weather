@@ -1,48 +1,69 @@
 <template>
-  <div class="search__block flex-center">
-    <input v-model="inputValue" type="text" placeholder="Enter city name">
-    <button @click="clickHandler">Search</button>
+  <div class="current-weather__block">
+    <div class="search__block flex-center">
+      <input
+          v-model="inputValue"
+          type="text"
+          placeholder="Enter city name"
+          @keyup.enter="clickHandler">
+      <button @click="clickHandler">Search</button>
+    </div>
+    <span v-if="isError">Wrong city name</span>
+    <Card
+        v-if="isSuccess === 200"
+        :countryName="countryName"
+        :cityName="cityName"
+        :dateUNIX="date"
+        :weather="weather"
+        :icon="weatherIcon"
+        :main="main"
+        :wind="wind"
+    />
   </div>
-  <span v-if="isError">Wrong city name</span>
-  <Card v-if="isSuccess === 200">
-    <Name />
-    <Description />
-    <Temperature />
-    <Wind />
-  </Card>
 </template>
 
 <script>
-import { mapMutations, mapState } from "vuex";
-import Card                       from './card';
-import Wind                       from './wind';
-import Description                from './description';
-import Temperature                from './temperature';
-import Name                       from './name';
+import { mapMutations, mapState } from 'vuex';
+import Card                       from './card/index';
 import store                      from '../store';
 
 export default {
   name: 'CurrentWeather',
-  components: {
-    Card,
-    Wind,
-    Description,
-    Temperature,
-    Name
-  },
+  components: { Card },
   data() {
-    return {
-      inputValue: null,
-      apiKey: ''
-    }
+    return { inputValue: null }
   },
   computed: {
     ...mapState({
+      apiKey(state) {
+        return state.apiKey;
+      },
       isError(state) {
         return state.isError;
       },
       isSuccess(state) {
         return state.isSuccess;
+      },
+      countryName(state) {
+        return state.name.country;
+      },
+      cityName(state) {
+        return state.name.city;
+      },
+      date(state) {
+        return state.date
+      },
+      weatherIcon(state) {
+        return state.icon;
+      },
+      weather(state) {
+        return state.weather;
+      },
+      main(state) {
+        return state.main;
+      },
+      wind(state) {
+        return state.wind;
       }
     }),
     geocording() {
@@ -56,13 +77,18 @@ export default {
           .then(() => {
             this.inputValue = null;
             setTimeout(() => this.setError(false), 5000);
-          })
+          });
     }
   }
 }
 </script>
 
 <style scoped>
+.current-weather__block {
+  display: flex;
+  flex-direction: column;
+}
+
 .search__block input {
   padding: 10px 5px;
   border: none;
