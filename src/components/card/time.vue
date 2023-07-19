@@ -6,11 +6,12 @@
 export default {
   name: 'Time',
   props: {
-    timeUNIX: { type: Number }
+    timeUNIX: { type: Number },
+    dateString: { type: String }
   },
   computed: {
     setDate() {
-      return new Date(this.timeUNIX * 1000);
+      return this.timeUNIX ? new Date(this.timeUNIX * 1000) : new Date(this.dateString);
     },
     formattedDate() {
       const date =  this.setDate.toLocaleDateString('en-US', {

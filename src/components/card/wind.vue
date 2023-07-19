@@ -10,16 +10,9 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
 export default {
   name: 'Wind',
-  computed: {
-    ...mapState({
-      wind(state) {
-        return state.wind;
-      }
-    })
-  }
+  props: { wind: { type: Object } }
 }
 </script>
 <style scoped>

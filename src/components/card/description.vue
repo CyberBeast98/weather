@@ -1,24 +1,21 @@
 <template>
   <div class="description__block full-width">
-    <img :src="weatherIcon" class="description__image" alt="weather">
+    <img :src="setIcon" class="description__image" alt="weather">
     <span>{{ weather.description }}</span>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex';
-
 export default {
   name: 'Description',
+  props: {
+    weather: { type: Object },
+    icon: { type: String }
+  },
   computed: {
-    ...mapState({
-      weatherIcon(state) {
-        return state.icon;
-      },
-      weather(state) {
-        return state.weather;
-      }
-    })
+    setIcon() {
+      return `http://api.openweathermap.org/img/w/${this.icon}.png`
+    }
   }
 }
 </script>
