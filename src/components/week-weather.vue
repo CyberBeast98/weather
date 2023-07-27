@@ -60,7 +60,7 @@ export default {
         return state.isSuccess;
       },
       name(state) {
-        return state.name
+        return state.name;
       },
       weatherList(state) {
         return state.weatherList;
@@ -83,7 +83,7 @@ export default {
 
       if(status === true) return document.querySelector('body').style.overflow = 'hidden';
 
-      return document.querySelector('body').style.overflow = 'visible'
+      return document.querySelector('body').style.overflow = 'visible';
     }
   }
 }

@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import Header from './components/header';
 import { mapState } from 'vuex';
+import Header       from './components/header';
 
 export default {
   name: 'App',

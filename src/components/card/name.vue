@@ -18,7 +18,7 @@ export default {
   },
   computed: {
     setStateName() {
-      return this.stateName === null || this.stateName === undefined ? '' : `${this.stateName},`
+      return this.stateName === null || this.stateName === undefined ? '' : `${this.stateName},`;
     }
   }
 }

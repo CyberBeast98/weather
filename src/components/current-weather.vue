@@ -32,10 +32,10 @@ export default {
         return state.isSuccess;
       },
       name(state) {
-        return state.name
+        return state.name;
       },
       date(state) {
-        return state.date
+        return state.date;
       },
       weatherIcon(state) {
         return state.icon;
