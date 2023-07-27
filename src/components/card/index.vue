@@ -3,6 +3,7 @@
     <Name
         :countryName="countryName"
         :cityName="cityName"
+        :stateName="stateName"
         :dateUNIX="dateUNIX"
         :dateString="dateString"/>
     <Description :weather="weather" :icon="icon"/>
@@ -28,6 +29,7 @@ export default {
   props: {
     countryName: { type: String },
     cityName: { type: String },
+    stateName: { type: String },
     dateUNIX: { type: Number },
     dateString: { type: String },
     weather: { type: Object },

@@ -6,7 +6,8 @@ const store = createStore({
   state: {
     name: {
       city: null,
-      country: null
+      country: null,
+      stateName: null
     },
     date: null,
     weather: [],
@@ -28,8 +29,10 @@ const store = createStore({
       fetch(params.geocording)
         .then(response => response.json())
         .then(response => {
+          console.log(response);
           context.commit('setCountryName', response[0].country);
           context.commit('setCityName', response[0].name);
+          context.commit('setStateName', response[0].state);
           context.commit('setWeatherEndpoint', `${url}data/2.5/weather?lat=${response[0].lat}&lon=${response[0].lon}&appid=${context.state.apiKey}`);
           context.commit('setForecast5DayEndpoint', `${url}data/2.5/forecast?lat=${response[0].lat}&lon=${response[0].lon}&appid=${context.state.apiKey}`);
         })
@@ -39,7 +42,6 @@ const store = createStore({
         })
         .catch(() => {
           context.commit('setError', true);
-          context.commit('setCountryName', null);
         });
     },
     getCurrentWeather(context) {
@@ -52,17 +54,19 @@ const store = createStore({
           context.commit('setWind', response.wind);
           context.commit('setDate', response.dt);
           context.commit('setSuccess', response.cod);
-
-          if (context.state.name.city === null) {
-            context.commit('setCountryName', response.sys.country);
-            context.commit('setCityName', response.name);
-          }
         });
     },
     get5DayWeather(context) {
       fetch(context.state.forecast5DayEndpoint)
         .then(response => response.json())
-        .then(response => context.commit('setWeatherList', response.list));
+        .then(response => {
+          context.commit('setWeatherList', response.list)
+
+          if (context.state.name.city === null) {
+            context.commit('setCountryName', response.city.country);
+            context.commit('setCityName', response.city.name);
+          }
+        });
     }
   },
   mutations: {
@@ -71,6 +75,9 @@ const store = createStore({
     },
     setCityName(state, data) {
       state.name.city = data;
+    },
+    setStateName(state, data) {
+      state.name.stateName = data;
     },
     setWeatherEndpoint(state, data) {
       state.weatherEndpoint = data;

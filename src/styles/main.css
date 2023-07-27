@@ -1,3 +1,5 @@
+@import 'datepicker.css';
+
 .description {
   margin-bottom: 10px;
   font-size: 20px;
@@ -8,19 +10,34 @@
   width: 100%;
 }
 
-.link {
-  text-decoration: none;
-  color: #2c3e50;
+.flex--wrap {
+  flex-wrap: wrap;
 }
 
-.flex-center {
+.flex--center {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+.flex--column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex--column-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.link {
+  text-decoration: none;
+  color: #2c3e50;
+}
+
 .active-link {
-  color: #74e6f7;
+  color: #87ceeb;
   font-size: 20px !important;
   transition: 0.3s;
 }

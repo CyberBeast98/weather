@@ -1,5 +1,5 @@
 <template>
-  <div class="main" :class="{'main-vh': isStartPage}">
+  <div class="main" :class="{'main-vh': isStartPage || weatherList.length === 0 }">
     <Header />
     <div class="container">
       <router-view></router-view>
@@ -8,37 +8,20 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import Header       from './components/header';
+import Header from './components/header';
+import { mapState } from 'vuex';
 
 export default {
   name: 'App',
   components: { Header },
-  created() {
-    this.getLocation();
-  },
   computed: {
     ...mapState({
-      apiKey(state) {
-        return state.apiKey;
+      weatherList(state) {
+        return state.weatherList;
       }
     }),
     isStartPage() {
       return this.$route.path === '/';
-    }
-  },
-  methods: {
-    getLocation() {
-      const successCallback = (position) => {
-        const url = 'http://api.openweathermap.org/';
-        const lat = position.coords.latitude;
-        const lon = position.coords.longitude;
-
-        this.$store.commit('setGeolocateAllow', true);
-        this.$store.commit('setWeatherEndpoint', `${url}data/2.5/weather?lat=${lat}&lon=${lon}&appid=${this.apiKey}`)
-      };
-
-      navigator.geolocation.getCurrentPosition(successCallback);
     }
   }
 }
@@ -78,6 +61,6 @@ export default {
   flex-wrap: wrap;
   width: 100%;
   padding: 20px;
-  background-color: #74e6f7;
+  background-color: #87ceeb;
 }
 </style>
