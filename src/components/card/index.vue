@@ -1,8 +1,9 @@
 <template>
-  <div class="weather__block">
+  <div class="weather__block flex--column-center">
     <Name
         :countryName="countryName"
         :cityName="cityName"
+        :stateName="stateName"
         :dateUNIX="dateUNIX"
         :dateString="dateString"/>
     <Description :weather="weather" :icon="icon"/>
@@ -28,6 +29,7 @@ export default {
   props: {
     countryName: { type: String },
     cityName: { type: String },
+    stateName: { type: String },
     dateUNIX: { type: Number },
     dateString: { type: String },
     weather: { type: Object },
@@ -39,9 +41,6 @@ export default {
 </script>
 <style scoped>
 .weather__block {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   min-width: 300px;
   margin: 20px;
   padding: 20px;
