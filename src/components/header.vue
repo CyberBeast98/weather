@@ -1,5 +1,5 @@
 <template>
-  <header class="header">
+  <header class="header flex--column-start">
     <h2 class="header__title">Weather App</h2>
     <router-link to="/" class="header__link link">Current Weather</router-link>
     <router-link to="/week" class="header__link link">5 Days Weather</router-link>
@@ -45,8 +45,6 @@ export default {
 </script>
 <style scoped>
 .header {
-  display: flex;
-  flex-direction: column;
   width: 190px;
   padding: 20px;
 }

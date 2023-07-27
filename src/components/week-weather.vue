@@ -81,7 +81,7 @@ export default {
     isOpen(status) {
       this.isOpenCalendar = status;
 
-      if(status === true) return document.querySelector('body').style.overflow = 'hidden';
+      if (status === true) return document.querySelector('body').style.overflow = 'hidden';
 
       return document.querySelector('body').style.overflow = 'visible';
     }
@@ -90,13 +90,6 @@ export default {
 </script>
 
 <style scoped>
-.test2 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
 .datepicker__block {
   width: 500px;
   margin-bottom: 20px;

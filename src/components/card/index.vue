@@ -1,5 +1,5 @@
 <template>
-  <div class="weather__block">
+  <div class="weather__block flex--column-center">
     <Name
         :countryName="countryName"
         :cityName="cityName"
@@ -41,9 +41,6 @@ export default {
 </script>
 <style scoped>
 .weather__block {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   min-width: 300px;
   margin: 20px;
   padding: 20px;
