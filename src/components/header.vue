@@ -1,8 +1,28 @@
 <template>
   <header class="header flex--column-start">
-    <h2 class="header__title">Weather App</h2>
-    <router-link to="/" class="header__link link">Current Weather</router-link>
-    <router-link to="/week" class="header__link link">5 Days Weather</router-link>
+    <div class="header__block">
+      <h2 class="header__title">Weather App</h2>
+      <button
+          class="header__button"
+          :class="{ 'header__button--close': isOpen }"
+          @click="toggleMenu">
+        <img src="../assets/icons/down.svg" alt="toggle-icon">
+      </button>
+    </div>
+    <div class="flex--column-start header__links" :class="{ 'header__links--show': isOpen }">
+      <router-link
+          to="/"
+          class="header__link link"
+          @click="isOpen = false">
+          Current Weather
+      </router-link>
+      <router-link
+          to="/week"
+          class="header__link link"
+          @click="isOpen = false">
+          5 Days Weather
+      </router-link>
+    </div>
   </header>
 </template>
 
@@ -13,6 +33,9 @@ export default {
   name: 'Header',
   created() {
     this.getLocation();
+  },
+  data() {
+    return { isOpen: false }
   },
   computed: {
     ...mapState({
@@ -39,6 +62,9 @@ export default {
       };
 
       navigator.geolocation.getCurrentPosition(successCallback);
+    },
+    toggleMenu() {
+      this.isOpen = !this.isOpen;
     }
   }
 }
@@ -47,6 +73,15 @@ export default {
 .header {
   width: 190px;
   padding: 20px;
+  background-color: white;
+}
+
+.header__block {
+  position: relative;
+}
+
+.header__button {
+  display: none;
 }
 
 .header__title {
@@ -57,5 +92,68 @@ export default {
   margin-bottom: 20px;
   font-size: 18px;
   transition: 0.3s;
+}
+
+@media only screen and (max-width: 991px) {
+  .header {
+    width: 100%;
+    padding: 0;
+  }
+
+  .header__block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    width: 100%;
+    padding: 20px 0;
+    z-index: 30;
+  }
+
+  .header__button {
+    position: absolute;
+    right: 20px;
+    display: block;
+    width: 25px;
+    height: 25px;
+    background-color: transparent;
+    border: none;
+    transition: 0.5s;
+  }
+
+  .header__button img {
+    width: 25px;
+    height: 25px;
+  }
+
+  .header__button--close {
+    transform: rotate(180deg);
+    transition: 0.5s;
+  }
+
+  .header__title {
+    margin-bottom: 0;
+  }
+
+  .header__links {
+    position: absolute;
+    top: -100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-color: white;
+    z-index: 20;
+    transition: 0.5s;
+  }
+
+  .header__links--show {
+    top: 67px;
+    transition: 0.5s;
+  }
+
+  .header__link {
+    margin: 10px 0;
+  }
 }
 </style>

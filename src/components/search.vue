@@ -6,8 +6,15 @@
         :class="{ 'error-border': showError }"
         placeholder="Enter city name"
         @keyup.enter="clickHandler">
-    <button @click="clickHandler">
-      <img src="../assets/icons/search.svg" alt="search-icon">
+    <button @click="clickHandler" :disabled="isDisabled">
+      <img
+          v-if="isDisabled"
+          src="../assets/icons/search-disabled.svg"
+          alt="search-icon">
+      <img
+          v-else
+          src="../assets/icons/search.svg"
+          alt="search-icon">
     </button>
     <span v-if="showError" class="error__text">Wrong city name</span>
   </div>
@@ -36,6 +43,9 @@ export default {
     },
     showError() {
       return this.isError && this.inputValue === null;
+    },
+    isDisabled() {
+      return this.inputValue === null || this.inputValue.length === 0
     }
   },
   methods: {
@@ -97,8 +107,12 @@ export default {
 }
 
 @media only screen and (max-width: 600px) {
-  .search__block, .search__block input {
-    width: 100%;
+  .search__block input {
+    width: 96%;
+  }
+
+  .search__block button {
+    right: 9px;
   }
 }
 </style>
