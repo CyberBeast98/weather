@@ -105,4 +105,10 @@ export default {
   background-color: #2c3e50;
   opacity: 50%;
 }
+
+@media only screen and (max-width: 600px) {
+  .datepicker__block {
+    width: 90%;
+  }
+}
 </style>

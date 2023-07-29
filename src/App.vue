@@ -1,7 +1,7 @@
 <template>
-  <div class="main" :class="{'main-vh': isStartPage || weatherList.length === 0 }">
+  <div class="main" :class="{'full-height': isStartPage || weatherList.length === 0 }">
     <Header />
-    <div class="container">
+    <div class="container" :class="{'full-height': isStartPage && pageWidth < 991 }">
       <router-view></router-view>
     </div>
   </div>
@@ -14,6 +14,12 @@ import Header       from './components/header';
 export default {
   name: 'App',
   components: { Header },
+  data() {
+    return { pageWidth: window.innerWidth }
+  },
+  mounted() {
+    this.$nextTick(() => window.addEventListener('resize', this.resizeWidth));
+  },
   computed: {
     ...mapState({
       weatherList(state) {
@@ -22,6 +28,11 @@ export default {
     }),
     isStartPage() {
       return this.$route.path === '/';
+    }
+  },
+  methods: {
+    resizeWidth() {
+      this.pageWidth = window.innerWidth;
     }
   }
 }
@@ -51,10 +62,6 @@ export default {
   height: 100%;
 }
 
-.main-vh {
-  height: 100vh;
-}
-
 .container {
   display: flex;
   justify-content: center;
@@ -62,5 +69,19 @@ export default {
   width: 100%;
   padding: 20px;
   background-color: #87ceeb;
+}
+
+
+@media only screen and (max-width: 991px) {
+  .main {
+    display: unset;
+  }
+
+  .container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px 0;
+  }
 }
 </style>

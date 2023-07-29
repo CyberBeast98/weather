@@ -56,4 +56,10 @@ export default {
     width: 100%;
   }
 }
+
+@media only screen and (max-width: 400px) {
+  .weather__block {
+    width: 90%;
+  }
+}
 </style>
