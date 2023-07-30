@@ -19,10 +19,10 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .description__block {
   padding: 10px 0;
-  border-bottom: 1px solid #edf0f0;
+  border-bottom: 1px solid $border-color;
   text-transform: uppercase;
 }
 

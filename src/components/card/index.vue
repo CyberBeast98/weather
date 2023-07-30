@@ -39,14 +39,14 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .weather__block {
   min-width: 300px;
   margin: 20px;
   padding: 20px;
   text-align: center;
   border-radius: 4px;
-  background-color: #ffffff;
+  background-color: $white;
   box-sizing: border-box;
   box-shadow: 0 0 49px -17px rgba(0, 0, 0, 0.75);
 }

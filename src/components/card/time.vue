@@ -1,5 +1,5 @@
 <template>
-  <p class="time__block full-width">{{ formattedDate }}</p>
+  <p class="full-width">{{ formattedDate }}</p>
 </template>
 
 <script>
@@ -31,8 +31,3 @@ export default {
   }
 }
 </script>
-<style scoped>
-.time__block {
-  margin-top: 5px;
-}
-</style>

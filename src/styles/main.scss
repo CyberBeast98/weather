@@ -1,4 +1,5 @@
-@import 'datepicker.css';
+@import 'datepicker.scss';
+@import 'variables';
 
 .description {
   margin-bottom: 10px;
@@ -43,11 +44,11 @@
 
 .link {
   text-decoration: none;
-  color: #2c3e50;
+  color: $text-color;
 }
 
 .active-link {
-  color: #87ceeb;
+  color: $main-color;
   font-size: 20px !important;
   transition: 0.3s;
 }

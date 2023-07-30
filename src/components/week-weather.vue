@@ -89,7 +89,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .datepicker__block {
   width: 500px;
   margin-bottom: 20px;
@@ -102,7 +102,7 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #2c3e50;
+  background-color: $blur-color;
   opacity: 50%;
 }
 

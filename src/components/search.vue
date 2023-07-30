@@ -3,6 +3,7 @@
     <input
         v-model="inputValue"
         type="text"
+        class="search__input"
         :class="{ 'error-border': showError }"
         placeholder="Enter city name"
         @keyup.enter="clickHandler">
@@ -58,61 +59,61 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .search__block {
   position: relative;
   width: 335px;
   margin-bottom: 25px;
-}
 
-.search__block input {
-  width: 100%;
-  padding: 10px 5px;
-  border: 2px solid transparent;
-  border-radius: 4px;
-  font-size: 20px;
-}
+  .search__input {
+    width: 100%;
+    padding: 10px 5px;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    font-size: 20px;
 
-.search__block input:focus {
-  outline: none;
-}
+    &:focus {
+      outline: none;
+    }
+  }
 
-.search__block button {
-  position: absolute;
-  right: -9px;
-  top: 9px;
-  display: flex;
-  border: none;
-  padding: 5px;
-  background-color: #ffffff;
-  color: #C0C0C0;
-  font-size: 20px;
-  cursor: pointer;
-}
+  button {
+    position: absolute;
+    right: -9px;
+    top: 9px;
+    display: flex;
+    border: none;
+    padding: 5px;
+    background-color: $white;
+    cursor: pointer;
+  }
 
-.search__block button img {
-  width: 20px;
+  img {
+    width: 20px;
+  }
 }
 
 .error__text {
   position: absolute;
   left: 0;
   bottom: -22px;
-  color: #f25149;
+  color: $error-color;
   font-size: 16px;
 }
 
 .error-border {
-  border: 2px solid #f25149 !important;
+  border: 2px solid $error-color !important;
 }
 
 @media only screen and (max-width: 600px) {
-  .search__block input {
-    width: 96%;
-  }
+  .search__block {
+    .search__input {
+      width: 96%;
+    }
 
-  .search__block button {
-    right: 9px;
+    button {
+      right: 9px;
+    }
   }
 }
 </style>
