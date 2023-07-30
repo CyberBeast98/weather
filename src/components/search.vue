@@ -7,7 +7,7 @@
         :class="{ 'error-border': showError }"
         placeholder="Enter city name"
         @keyup.enter="clickHandler">
-    <button @click="clickHandler" :disabled="isDisabled">
+    <button class="search__button" :disabled="isDisabled" @click="clickHandler" >
       <img
           v-if="isDisabled"
           src="../assets/icons/search-disabled.svg"
@@ -68,16 +68,16 @@ export default {
   .search__input {
     width: 100%;
     padding: 10px 5px;
+    font-size: 20px;
     border: 2px solid transparent;
     border-radius: 4px;
-    font-size: 20px;
 
     &:focus {
       outline: none;
     }
   }
 
-  button {
+  .search__button {
     position: absolute;
     right: -9px;
     top: 9px;
@@ -111,7 +111,7 @@ export default {
       width: 96%;
     }
 
-    button {
+    .search__button {
       right: 9px;
     }
   }
