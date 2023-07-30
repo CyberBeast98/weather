@@ -23,9 +23,10 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .name__block {
   max-width: 300px;
+  margin-bottom: 5px;
   font-size: 28px;
   font-weight: 600;
   text-decoration: underline;

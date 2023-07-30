@@ -6,7 +6,10 @@
           class="header__button"
           :class="{ 'header__button--close': isOpen }"
           @click="toggleMenu">
-        <img src="../assets/icons/down.svg" alt="toggle-icon">
+        <img
+            src="../assets/icons/down.svg"
+            class="header__icon"
+            alt="toggle-icon">
       </button>
     </div>
     <div class="flex--column-start header__links" :class="{ 'header__links--show': isOpen }">
@@ -69,11 +72,11 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .header {
   width: 190px;
   padding: 20px;
-  background-color: white;
+  background-color: $white;
 }
 
 .header__block {
@@ -104,7 +107,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: white;
+    background-color: $white;
     width: 100%;
     padding: 20px 0;
     z-index: 30;
@@ -119,12 +122,13 @@ export default {
     background-color: transparent;
     border: none;
     transition: 0.5s;
+
+    .header__icon {
+      width: 25px;
+      height: 25px;
+    }
   }
 
-  .header__button img {
-    width: 25px;
-    height: 25px;
-  }
 
   .header__button--close {
     transform: rotate(180deg);
@@ -142,9 +146,9 @@ export default {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    background-color: white;
-    z-index: 20;
+    background-color: $white;
     transition: 0.5s;
+    z-index: 20;
   }
 
   .header__links--show {

@@ -15,7 +15,7 @@ export default {
   props: { wind: { type: Object } }
 }
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .wind__block {
   text-align: start;
 }

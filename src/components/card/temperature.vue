@@ -30,12 +30,12 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .temperature__block {
   width: 100%;
   padding: 10px 0;
   margin-bottom: 10px;
-  border-bottom: 1px solid #edf0f0;
+  border-bottom: 1px solid $border-color;
 }
 
 .temperature__block-inner {
