@@ -9,9 +9,6 @@
   },
   "dependencies": {
     "@vitejs/plugin-vue": "^2.3.3",
-    "@vue/cli-service": "^5.0.8",
-    "@vue/cli-plugin-eslint": "~4.5.13",
-    "@vue/cli-plugin-babel": "~5.0.0",
     "@vuepic/vue-datepicker": "^5.4.0",
     "axios": "^0.22.0",
     "chart.js": "^4.3.0",
@@ -28,6 +25,9 @@
   "devDependencies": {
     "sass": "^1.64.1",
     "sass-loader": "^10.4.1",
+    "@vue/cli-service": "^5.0.8",
+    "@vue/cli-plugin-eslint": "~4.5.13",
+    "@vue/cli-plugin-babel": "~5.0.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^7.0.0"
