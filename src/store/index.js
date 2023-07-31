@@ -30,7 +30,6 @@ const store = createStore({
       axios.get(params.geocording)
         .then(response => response.data)
         .then(response => {
-          console.log(response);
           context.commit('setCountryName', response[0].country);
           context.commit('setCityName', response[0].name);
           context.commit('setStateName', response[0].state);
