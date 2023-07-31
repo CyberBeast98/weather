@@ -1,4 +1,5 @@
 import { createStore } from 'vuex'
+import axios           from 'axios';
 
 const url = 'http://api.openweathermap.org/';
 
@@ -26,8 +27,8 @@ const store = createStore({
   actions: {
     getGeocording(context, params) {
       context.commit('setError', false);
-      fetch(params.geocording)
-        .then(response => response.json())
+      axios.get(params.geocording)
+        .then(response => response.data)
         .then(response => {
           console.log(response);
           context.commit('setCountryName', response[0].country);
@@ -45,8 +46,8 @@ const store = createStore({
         });
     },
     getCurrentWeather(context) {
-      fetch(context.state.weatherEndpoint)
-        .then(response => response.json())
+      axios.get(context.state.weatherEndpoint)
+        .then(response => response.data)
         .then(response => {
           context.commit('setWeatherIcon', response.weather[0].icon);
           context.commit('setWeather', response.weather[0]);
@@ -57,8 +58,8 @@ const store = createStore({
         });
     },
     get5DayWeather(context) {
-      fetch(context.state.forecast5DayEndpoint)
-        .then(response => response.json())
+      axios.get(context.state.forecast5DayEndpoint)
+        .then(response => response.data)
         .then(response => {
           context.commit('setWeatherList', response.list)
 
