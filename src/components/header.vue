@@ -12,18 +12,24 @@
             alt="toggle-icon">
       </button>
     </div>
-    <div class="flex--column-start header__links" :class="{ 'header__links--show': isOpen }">
+    <div class="flex--column-start full-width header__links" :class="{ 'header__links--show': isOpen }">
       <router-link
           to="/"
-          class="header__link link"
+          class="header__link full-width link"
           @click="isOpen = false">
           Current Weather
       </router-link>
       <router-link
           to="/week"
-          class="header__link link"
+          class="header__link full-width link"
           @click="isOpen = false">
           5 Days Weather
+      </router-link>
+      <router-link
+          to="/charts"
+          class="header__link full-width link"
+          @click="isOpen = false">
+        Charts
       </router-link>
     </div>
   </header>
