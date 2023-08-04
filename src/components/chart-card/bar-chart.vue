@@ -18,7 +18,7 @@ ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
 export default {
   name: 'BarChart',
-  components: {ChartCard, Bar },
+  components: { ChartCard, Bar },
   data() {
     return {
       chartData: {
@@ -36,11 +36,7 @@ export default {
       }
     }
   },
-  props: {
-    weatherList: {
-      type: Array
-    }
-  },
+  props: { weatherList: { type: Array } },
   created() {
     this.init();
   },
