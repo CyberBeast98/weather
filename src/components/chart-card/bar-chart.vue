@@ -50,14 +50,14 @@ export default {
     }
   },
   methods: {
-    feelsLike() {
+    temperature() {
       this.chartData.datasets[0].data = this.currentDate.map(i => (Number(i.main.feels_like) - 273).toFixed(0));
     },
     date() {
       this.chartData.labels = this.currentDate.map(i => new Date(i.dt_txt).toLocaleTimeString('en-US'));
     },
     init() {
-      this.feelsLike();
+      this.temperature();
       this.date();
     }
   }
