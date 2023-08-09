@@ -28,18 +28,20 @@
         v-if="isOpenCalendar"
         class="blur"
         @click="isOpen(false)"/>
+    <ScrollButton @scrollToTop="scrollToTop"/>
   </div>
 </template>
 
 <script>
 import { mapState }   from 'vuex';
 import Card           from './card/index';
+import ScrollButton   from "./scroll-button";
 import VueDatePicker  from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
 
 export default {
   name: 'WeekWeather',
-  components: { Card, VueDatePicker },
+  components: { ScrollButton, Card, VueDatePicker },
   data() {
     return {
       date: null,
@@ -84,6 +86,12 @@ export default {
       if (status === true) return document.querySelector('body').style.overflow = 'hidden';
 
       return document.querySelector('body').style.overflow = 'visible';
+    },
+    scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
     }
   }
 }
