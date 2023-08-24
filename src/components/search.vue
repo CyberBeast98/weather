@@ -40,7 +40,9 @@ export default {
       }
     }),
     geocording() {
-      return `http://api.openweathermap.org/geo/1.0/direct?q=${this.inputValue}&limit=1&appid=${this.apiKey}`;
+      if (localStorage.inputValue !== this.inputValue) return `http://api.openweathermap.org/geo/1.0/direct?q=${this.inputValue}&limit=1&appid=${this.apiKey}`;
+
+      return `http://api.openweathermap.org/geo/1.0/direct?q=${localStorage.inputValue}&limit=1&appid=${this.apiKey}`;
     },
     showError() {
       return this.isError && this.inputValue === null;
@@ -53,7 +55,10 @@ export default {
     ...mapMutations({ setError: 'setError' }),
     async clickHandler() {
       await store.dispatch('getGeocording', { geocording: this.geocording })
-          .then(() => this.inputValue = null);
+          .then(() => {
+            localStorage.inputValue = this.inputValue;
+            this.inputValue = null;
+          })
     }
   }
 }
