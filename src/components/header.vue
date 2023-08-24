@@ -37,14 +37,22 @@
 
 <script>
 import { mapState } from 'vuex';
+import store        from '../store';
 
 export default {
   name: 'Header',
   created() {
-    this.getLocation();
+    if (!localStorage.inputValue) this.getLocation();
   },
   data() {
     return { isOpen: false }
+  },
+  mounted() {
+    if (localStorage.inputValue) {
+      this.inputValue = localStorage.inputValue;
+
+      store.dispatch('getGeocording', { geocording: this.geocording })
+    }
   },
   computed: {
     ...mapState({
@@ -53,8 +61,11 @@ export default {
       },
       apiKey(state) {
         return state.apiKey;
-      }
-    })
+      },
+    }),
+    geocording() {
+      return `http://api.openweathermap.org/geo/1.0/direct?q=${localStorage.inputValue}&limit=1&appid=${this.apiKey}`;
+    },
   },
   methods: {
     getLocation() {
