@@ -7,8 +7,10 @@
 
 <script>
 
-import cloud from '../../assets/cloud.png'
-import clear from '../../assets/clear.png'
+import Cloud from '../../assets/cloud.png'
+import Clear from '../../assets/clear.png'
+import Rain from '../../assets/rain.png'
+import Snow from '../../assets/snow.png'
 
 export default {
   name: 'Description',
@@ -20,9 +22,13 @@ export default {
     setIcon() {
       switch (this.weather.main) {
         case 'Clouds':
-          return cloud;
+          return Cloud;
         case 'Clear':
-          return clear;
+          return Clear;
+        case 'Rain':
+          return Rain;
+        case 'Snow':
+          return Snow;
         default:
           console.log('Something wrong');
           break;
