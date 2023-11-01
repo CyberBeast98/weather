@@ -21,7 +21,8 @@ const store = createStore({
     forecast5DayEndpoint: null,
     isSuccess: null,
     weatherList: [],
-    isGeolocateAllow: false
+    isGeolocateAllow: false,
+    isDarkTheme: false
   },
 
   actions: {
@@ -112,6 +113,9 @@ const store = createStore({
     setGeolocateAllow(state, status) {
       state.isGeolocateAllow = status;
     },
+    setDarkTheme(state, status) {
+      state.isDarkTheme = status;
+    }
   }
 });
 

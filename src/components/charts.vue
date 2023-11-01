@@ -1,5 +1,5 @@
 <template>
-  <BarChart :weatherList="weatherList"/>
+  <BarChart :weatherList="weatherList" :isDarkTheme="isDarkTheme"/>
 </template>
 
 <script>
@@ -13,6 +13,9 @@ export default {
     ...mapState({
       weatherList(state) {
         return state.weatherList;
+      },
+      isDarkTheme(state) {
+        return state.isDarkTheme;
       }
     })
   }
