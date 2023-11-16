@@ -1,5 +1,5 @@
 <template>
-  <ChartCard>
+  <ChartCard :isDarkTheme="isDarkTheme">
     <h3>Temperature for today (interval  3 hours)</h3>
     <Bar
         id="my-chart-id"
@@ -36,7 +36,10 @@ export default {
       }
     }
   },
-  props: { weatherList: { type: Array } },
+  props: {
+    weatherList: { type: Array },
+    isDarkTheme: { type: Boolean }
+  },
   created() {
     this.init();
   },

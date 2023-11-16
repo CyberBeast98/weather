@@ -1,7 +1,15 @@
 <template>
-  <header class="header flex--column-start">
+  <header class="header flex--column-start" :class="{'header--dark': isDarkTheme}">
     <div class="header__block">
-      <h2 class="header__title">Weather App</h2>
+      <div class="flex--start-between">
+        <h2 class="header__title">Weather App</h2>
+        <button v-if="isDarkTheme" class="theme__button" @click="changeTheme('dark')">
+          <img src="../assets/icons/sun.svg" alt="sun">
+        </button>
+        <button v-else class="theme__button theme__button--small" @click="changeTheme('light')">
+          <img src="../assets/icons/moon.svg" alt="moon">
+        </button>
+      </div>
       <button
           class="header__button"
           :class="{ 'header__button--close': isOpen }"
@@ -16,18 +24,21 @@
       <router-link
           to="/"
           class="header__link full-width link"
+          :class="{'header__link--light': isDarkTheme}"
           @click="isOpen = false">
           Current Weather
       </router-link>
       <router-link
           to="/week"
           class="header__link full-width link"
+          :class="{'header__link--light': isDarkTheme}"
           @click="isOpen = false">
           5 Days Weather
       </router-link>
       <router-link
           to="/charts"
           class="header__link full-width link"
+          :class="{'header__link--light': isDarkTheme}"
           @click="isOpen = false">
         Charts
       </router-link>
@@ -37,7 +48,6 @@
 
 <script>
 import { mapState } from 'vuex';
-import store        from '../store';
 
 export default {
   name: 'Header',
@@ -48,10 +58,12 @@ export default {
     return { isOpen: false }
   },
   mounted() {
+    if (localStorage.theme) this.changeTheme(localStorage.theme);
+
     if (localStorage.inputValue) {
       this.inputValue = localStorage.inputValue;
 
-      store.dispatch('getGeocording', { geocording: this.geocording })
+      this.$store.dispatch('getGeocording', { geocording: this.geocording })
     }
   },
   computed: {
@@ -62,10 +74,13 @@ export default {
       apiKey(state) {
         return state.apiKey;
       },
+      isDarkTheme(state) {
+        return state.isDarkTheme;
+      }
     }),
     geocording() {
       return `http://api.openweathermap.org/geo/1.0/direct?q=${localStorage.inputValue}&limit=1&appid=${this.apiKey}`;
-    },
+    }
   },
   methods: {
     getLocation() {
@@ -85,19 +100,29 @@ export default {
     },
     toggleMenu() {
       this.isOpen = !this.isOpen;
+    },
+    changeTheme(theme) {
+      theme === 'dark' ? this.$store.commit('setDarkTheme', false) : this.$store.commit('setDarkTheme', true)
+
+      localStorage.theme = theme
     }
   }
 }
 </script>
 <style lang="scss" scoped>
 .header {
-  width: 190px;
+  width: 270px;
   padding: 20px;
   background-color: $white;
 }
 
+.header--dark {
+  background-color: #22272e;
+}
+
 .header__block {
   position: relative;
+  width: 100%;
 }
 
 .header__button {
@@ -112,6 +137,27 @@ export default {
   margin-bottom: 20px;
   font-size: 18px;
   transition: 0.3s;
+}
+
+.header__link--light {
+  color: $white;
+}
+
+.theme__button {
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+
+  img {
+    width: 100%;
+  }
+}
+
+.theme__button--small {
+  width: 25px;
+  height: 25px;
 }
 
 @media only screen and (max-width: 991px) {

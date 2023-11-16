@@ -4,10 +4,14 @@
         v-model="inputValue"
         type="text"
         class="search__input"
-        :class="{ 'error-border': showError }"
-        placeholder="Enter city name"
+        :class="{ 'error-border': showError, 'search__input--dark': isDarkTheme }"
+        placeholder="Enter city"
         @keyup.enter="clickHandler">
-    <button class="search__button" :disabled="isDisabled" @click="clickHandler" >
+    <button
+        class="search__button"
+        :class="{'search__button--dark': isDarkTheme}"
+        :disabled="isDisabled"
+        @click="clickHandler" >
       <img
           v-if="isDisabled"
           src="../assets/icons/search-disabled.svg"
@@ -37,6 +41,9 @@ export default {
       },
       isError(state) {
         return state.isError;
+      },
+      isDarkTheme(state) {
+        return state.isDarkTheme;
       }
     }),
     geocording() {
@@ -108,6 +115,14 @@ export default {
 
 .error-border {
   border: 2px solid $error-color !important;
+}
+
+.search__input--dark, .search__button--dark {
+  background-color: #22272e !important;
+
+  &::placeholder {
+    color: white;
+  }
 }
 
 @media only screen and (max-width: 600px) {

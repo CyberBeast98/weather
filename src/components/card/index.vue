@@ -1,5 +1,5 @@
 <template>
-  <div class="weather__block flex--column-center">
+  <div class="weather__block flex--column-center" :class="{'weather__block--dark': isDarkTheme}">
     <Name
         :countryName="countryName"
         :cityName="cityName"
@@ -17,6 +17,7 @@ import Name         from './name';
 import Description  from './description';
 import Temperature  from './temperature';
 import Wind         from './wind';
+import {mapState} from "vuex";
 
 export default {
   name: 'Card',
@@ -36,7 +37,14 @@ export default {
     icon: { type: String },
     main: { type: Object },
     wind: { type: Object }
-  }
+  },
+  computed: {
+    ...mapState({
+      isDarkTheme(state) {
+        return state.isDarkTheme;
+      }
+    })
+  },
 }
 </script>
 <style lang="scss" scoped>
@@ -51,9 +59,14 @@ export default {
   box-shadow: 0 0 49px -17px rgba(0, 0, 0, 0.75);
 }
 
+.weather__block--dark {
+  background-color: #22272e;
+}
+
 @media only screen and (max-width: 600px) {
   .weather__block {
     width: 100%;
+    margin: 20px 0;
   }
 }
 

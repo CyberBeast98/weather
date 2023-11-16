@@ -1,7 +1,7 @@
 <template>
-  <div class="main" :class="{'full-height': isStartPage || weatherList.length === 0 }">
+  <div class="main" :class="{'full-height': isStartPage || weatherList.length === 0, 'text--light': isDarkTheme }">
     <Header />
-    <div class="container" :class="{'full-height': isStartPage && pageWidth < 991 }">
+    <div class="container" :class="{'full-height': isStartPage && pageWidth < 991, 'container--dark': isDarkTheme }">
       <router-view></router-view>
     </div>
   </div>
@@ -24,6 +24,9 @@ export default {
     ...mapState({
       weatherList(state) {
         return state.weatherList;
+      },
+      isDarkTheme(state) {
+        return state.isDarkTheme;
       }
     }),
     isStartPage() {
@@ -48,7 +51,6 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: $text-color;
   display: flex;
   justify-content: start;
   flex-direction: column;
@@ -58,6 +60,11 @@ export default {
 .main {
   display: flex;
   height: 100%;
+  color: $text-color;
+}
+
+.text--light {
+  color: $white;
 }
 
 .container {
@@ -67,6 +74,10 @@ export default {
   width: 100%;
   padding: 20px;
   background-color: $main-color;
+}
+
+.container--dark {
+  background-color: #1c2128;
 }
 
 @media only screen and (max-width: 991px) {
