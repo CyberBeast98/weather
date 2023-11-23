@@ -1,6 +1,6 @@
 <template>
   <ChartCard :isDarkTheme="isDarkTheme">
-    <h3>Temperature for today (interval  3 hours)</h3>
+    <h3>{{ $t('charts.temperatureToday') }}</h3>
     <Bar
         id="my-chart-id"
         :options="chartOptions"

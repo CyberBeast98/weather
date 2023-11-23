@@ -1,0 +1,22 @@
+{
+  "navBar": {
+    "currentWeather": "Поточна погода",
+    "5days": "Погода на 5 днів",
+    "charts": "Графіки"
+  },
+  "placeholder": "Введіть місто",
+  "temperature": {
+    "title": "Температура",
+    "min": "Мін",
+    "max": "Макс"
+  },
+  "wind": {
+    "title": "Вітер",
+    "speed": "Швидкість",
+    "gust": "Порив",
+    "degrees": "Градус"
+  },
+  "charts": {
+    "temperatureToday": "Температура сьогодні"
+  }
+}

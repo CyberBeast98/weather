@@ -1,56 +1,63 @@
 <template>
-  <header class="header flex--column-start" :class="{'header--dark': isDarkTheme}">
-    <div class="header__block">
-      <div class="flex--start-between">
-        <h2 class="header__title">Weather App</h2>
-        <button v-if="isDarkTheme" class="theme__button" @click="changeTheme('dark')">
-          <img src="../assets/icons/sun.svg" alt="sun">
-        </button>
-        <button v-else class="theme__button theme__button--small" @click="changeTheme('light')">
-          <img src="../assets/icons/moon.svg" alt="moon">
+  <header class="header flex--column-between" :class="{ 'bg--dark': isDarkTheme }">
+    <div>
+      <div class="header__block">
+        <div class="flex--start-between">
+          <h2 class="header__title">Weather App</h2>
+          <button v-if="isDarkTheme" class="theme__button" @click="changeTheme('dark')">
+            <img src="../assets/icons/sun.svg" alt="sun">
+          </button>
+          <button v-else class="theme__button theme__button--small" @click="changeTheme('light')">
+            <img src="../assets/icons/moon.svg" alt="moon">
+          </button>
+        </div>
+        <button
+            class="header__button"
+            :class="{ 'header__button--close': isOpen }"
+            @click="toggleMenu">
+          <img
+              src="../assets/icons/down.svg"
+              class="header__icon"
+              alt="toggle-icon">
         </button>
       </div>
-      <button
-          class="header__button"
-          :class="{ 'header__button--close': isOpen }"
-          @click="toggleMenu">
-        <img
-            src="../assets/icons/down.svg"
-            class="header__icon"
-            alt="toggle-icon">
-      </button>
+      <div
+          class="flex--column-start full-width header__links"
+          :class="{ 'header__links--show': isOpen, 'bg--dark': isDarkTheme }">
+        <router-link
+            to="/"
+            class="header__link full-width link"
+            :class="{ 'text-light': isDarkTheme }"
+            @click="isOpen = false">
+          {{ $t('navBar.currentWeather') }}
+        </router-link>
+        <router-link
+            to="/week"
+            class="header__link full-width link"
+            :class="{ 'text-light': isDarkTheme }"
+            @click="isOpen = false">
+          {{ $t('navBar.5days') }}
+        </router-link>
+        <router-link
+            to="/charts"
+            class="header__link full-width link"
+            :class="{ 'text-light': isDarkTheme }"
+            @click="isOpen = false">
+          {{ $t('navBar.charts') }}
+        </router-link>
+      </div>
     </div>
-    <div class="flex--column-start full-width header__links" :class="{ 'header__links--show': isOpen }">
-      <router-link
-          to="/"
-          class="header__link full-width link"
-          :class="{'header__link--light': isDarkTheme}"
-          @click="isOpen = false">
-          Current Weather
-      </router-link>
-      <router-link
-          to="/week"
-          class="header__link full-width link"
-          :class="{'header__link--light': isDarkTheme}"
-          @click="isOpen = false">
-          5 Days Weather
-      </router-link>
-      <router-link
-          to="/charts"
-          class="header__link full-width link"
-          :class="{'header__link--light': isDarkTheme}"
-          @click="isOpen = false">
-        Charts
-      </router-link>
-    </div>
+    <SwitchLang :isDarkTheme="isDarkTheme"/>
   </header>
 </template>
 
 <script>
 import { mapState } from 'vuex';
+import SwitchLang   from "./switch-lang";
 
 export default {
   name: 'Header',
+  components: { SwitchLang },
   created() {
     if (!localStorage.inputValue) this.getLocation();
   },
@@ -112,12 +119,11 @@ export default {
 <style lang="scss" scoped>
 .header {
   width: 270px;
+  height: 95.6vh;
+  position: sticky;
+  top: 0;
   padding: 20px;
   background-color: $white;
-}
-
-.header--dark {
-  background-color: #22272e;
 }
 
 .header__block {
@@ -137,10 +143,6 @@ export default {
   margin-bottom: 20px;
   font-size: 18px;
   transition: 0.3s;
-}
-
-.header__link--light {
-  color: $white;
 }
 
 .theme__button {
@@ -164,20 +166,21 @@ export default {
   .header {
     width: 100%;
     padding: 0;
+    height: unset;
+    z-index: 10;
   }
 
   .header__block {
     display: flex;
     align-items: center;
-    justify-content: center;
-    background-color: $white;
-    width: 100%;
+    justify-content: space-between;
+    width: 90%;
     padding: 20px 0;
+    margin: 0 auto;
     z-index: 30;
   }
 
   .header__button {
-    position: absolute;
     right: 20px;
     display: block;
     width: 25px;
@@ -204,7 +207,7 @@ export default {
 
   .header__links {
     position: absolute;
-    top: -100px;
+    top: -200px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -215,13 +218,17 @@ export default {
   }
 
   .header__links--show {
-    top: 67px;
+    top: 110px;
     transition: 0.5s;
   }
 
   .header__link {
     margin: 10px 0;
     text-align: center;
+  }
+
+  .theme__button {
+    margin-left: 20px;
   }
 }
 </style>

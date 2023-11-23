@@ -1,8 +1,9 @@
 <template>
-  <div class="main" :class="{'full-height': isStartPage || weatherList.length === 0, 'text--light': isDarkTheme }">
+  <div class="main" :class="{'full-height': isStartPage || weatherList.length === 0, 'text-light': isDarkTheme }">
     <Header />
     <div class="container" :class="{'full-height': isStartPage && pageWidth < 991, 'container--dark': isDarkTheme }">
-      <router-view></router-view>
+      <span v-if="loader" class="loader"></span>
+      <router-view v-else></router-view>
     </div>
   </div>
 </template>
@@ -27,6 +28,9 @@ export default {
       },
       isDarkTheme(state) {
         return state.isDarkTheme;
+      },
+      loader(state) {
+        return state.loader;
       }
     }),
     isStartPage() {
@@ -63,10 +67,6 @@ export default {
   color: $text-color;
 }
 
-.text--light {
-  color: $white;
-}
-
 .container {
   display: flex;
   justify-content: center;
@@ -78,6 +78,41 @@ export default {
 
 .container--dark {
   background-color: #1c2128;
+}
+
+.loader {
+  width: 48px;
+  height: 48px;
+  align-self: center;
+  border: 5px solid #FFF;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  position: relative;
+  animation: pulse 1s linear infinite;
+}
+.loader:after {
+  content: '';
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  border: 5px solid #FFF;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  animation: scaleUp 1s linear infinite;
+}
+
+@keyframes scaleUp {
+  0% { transform: translate(-50%, -50%) scale(0) }
+  60% , 100% { transform: translate(-50%, -50%)  scale(1)}
+}
+@keyframes pulse {
+  0% , 60% , 100%{ transform:  scale(1) }
+  80% { transform:  scale(1.2)}
 }
 
 @media only screen and (max-width: 991px) {

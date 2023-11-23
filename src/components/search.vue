@@ -5,7 +5,8 @@
         type="text"
         class="search__input"
         :class="{ 'error-border': showError, 'search__input--dark': isDarkTheme }"
-        placeholder="Enter city"
+        :placeholder="$t('placeholder')"
+        :autocomplete="true"
         @keyup.enter="clickHandler">
     <button
         class="search__button"
@@ -44,6 +45,9 @@ export default {
       },
       isDarkTheme(state) {
         return state.isDarkTheme;
+      },
+      city(state) {
+        return state.city;
       }
     }),
     geocording() {
@@ -94,10 +98,8 @@ export default {
     right: -9px;
     top: 9px;
     display: flex;
-    border: none;
     padding: 5px;
     background-color: $white;
-    cursor: pointer;
   }
 
   img {
@@ -119,6 +121,7 @@ export default {
 
 .search__input--dark, .search__button--dark {
   background-color: #22272e !important;
+  color: $white;
 
   &::placeholder {
     color: white;

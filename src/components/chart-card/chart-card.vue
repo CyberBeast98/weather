@@ -1,5 +1,5 @@
 <template>
-  <div class="chart__block" :class="{'chart__block--dark': isDarkTheme}">
+  <div class="chart__block" :class="{ 'bg--dark': isDarkTheme }">
     <slot/>
   </div>
 </template>
@@ -19,9 +19,5 @@ export default {
   background-color: $white;
   box-sizing: border-box;
   box-shadow: 0 0 49px -17px rgba(0, 0, 0, 0.75);
-}
-
-.chart__block--dark {
-  background-color: #22272e;
 }
 </style>

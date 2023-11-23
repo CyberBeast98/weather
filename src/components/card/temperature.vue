@@ -1,17 +1,17 @@
 <template>
   <div class="temperature__block">
-    <p class="description">Temperature</p>
+    <p class="description">{{ $t('temperature.title') }}</p>
     <div class="temperature__block-inner">
-      <p class="temperature__text">Min: {{ convertationToCelsius(main.temp_min) }}<sup>o</sup>C</p>
-      <p class="temperature__text">Max: {{ convertationToCelsius(main.temp_max) }}<sup>o</sup>C</p>
+      <p class="temperature__text">{{ $t('temperature.min') }}: {{ convertationToCelsius(main.temp_min) }}<sup>o</sup>C</p>
+      <p class="temperature__text">{{ $t('temperature.max') }}: {{ convertationToCelsius(main.temp_max) }}<sup>o</sup>C</p>
     </div>
     <div class="temperature__block-inner">
-      <p class="temperature__text">Min: {{ convertationToFahrenheit(main.temp_min) }}<sup>o</sup>F</p>
-      <p class="temperature__text">Max: {{ convertationToFahrenheit(main.temp_max) }}<sup>o</sup>F</p>
+      <p class="temperature__text">{{ $t('temperature.min') }}: {{ convertationToFahrenheit(main.temp_min) }}<sup>o</sup>F</p>
+      <p class="temperature__text">{{ $t('temperature.max') }}: {{ convertationToFahrenheit(main.temp_max) }}<sup>o</sup>F</p>
     </div>
     <div class="temperature__block-inner">
-      <p class="temperature__text">Min: {{ main.temp_min }}K</p>
-      <p class="temperature__text">Max: {{ main.temp_max }}K</p>
+      <p class="temperature__text">{{ $t('temperature.min') }}: {{ main.temp_min }}K</p>
+      <p class="temperature__text">{{ $t('temperature.max') }}: {{ main.temp_max }}K</p>
     </div>
   </div>
 </template>

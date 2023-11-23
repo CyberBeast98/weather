@@ -17,7 +17,6 @@ button {
   right: 50px;
   background: transparent;
   border-radius: 50%;
-  border: none;
   transform: rotate(180deg);
   img {
     width: 50px;
