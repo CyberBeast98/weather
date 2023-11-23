@@ -43,9 +43,6 @@ export default {
       isError(state) {
         return state.isError;
       },
-      mainArr(state) {
-        return state.mainArr;
-      },
       isDarkTheme(state) {
         return state.isDarkTheme;
       },

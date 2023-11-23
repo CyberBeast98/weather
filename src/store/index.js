@@ -5,7 +5,6 @@ const url = 'http://api.openweathermap.org/';
 
 const store = createStore({
   state: {
-    mainArr: [],
     city: {
       name: {
         city: null,
