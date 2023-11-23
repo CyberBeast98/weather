@@ -1,10 +1,10 @@
 <template>
   <div class="full-width">
-    <p class="description">Wind</p>
+    <p class="description">{{ $t('wind.title') }}</p>
     <div class="wind__block">
-      <p class="wind__text">Speed: {{ wind.speed }} meter/sec</p>
-      <p class="wind__text">Gust: {{ wind.gust }} meter/sec</p>
-      <p class="wind__text">Degrees: {{ wind.deg }}</p>
+      <p class="wind__text">{{ $t('wind.speed') }}: {{ wind.speed }} meter/sec</p>
+      <p class="wind__text">{{ $t('wind.gust') }}: {{ wind.gust }} meter/sec</p>
+      <p class="wind__text">{{ $t('wind.degrees') }}: {{ wind.deg }}</p>
     </div>
   </div>
 </template>

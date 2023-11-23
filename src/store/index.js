@@ -5,28 +5,33 @@ const url = 'http://api.openweathermap.org/';
 
 const store = createStore({
   state: {
-    name: {
-      city: null,
-      country: null,
-      stateName: null
+    mainArr: [],
+    city: {
+      name: {
+        city: null,
+        country: null,
+        stateName: null
+      },
+      date: null
     },
-    date: null,
     weather: [],
     wind: {},
     main: {},
     icon: null,
     isError: false,
-    apiKey: '',
+    apiKey: 'ae5928abced505655c35daeb985e529b',
     weatherEndpoint: null,
     forecast5DayEndpoint: null,
     isSuccess: null,
     weatherList: [],
     isGeolocateAllow: false,
-    isDarkTheme: false
+    isDarkTheme: false,
+    loader: false
   },
 
   actions: {
     getGeocording(context, params) {
+      context.commit('setLoader', true);
       context.commit('setError', false);
       axios.get(params.geocording)
         .then(response => response.data)
@@ -63,22 +68,24 @@ const store = createStore({
         .then(response => {
           context.commit('setWeatherList', response.list)
 
-          if (context.state.name.city === null) {
+          if (context.state.city.name.city === null) {
             context.commit('setCountryName', response.city.country);
             context.commit('setCityName', response.city.name);
           }
+
+          context.commit('setLoader', false);
         });
     }
   },
   mutations: {
     setCountryName(state, data) {
-      state.name.country = data;
+      state.city.name.country = data;
     },
     setCityName(state, data) {
-      state.name.city = data;
+      state.city.name.city = data;
     },
     setStateName(state, data) {
-      state.name.stateName = data;
+      state.city.name.stateName = data;
     },
     setWeatherEndpoint(state, data) {
       state.weatherEndpoint = data;
@@ -99,7 +106,7 @@ const store = createStore({
       state.wind = data;
     },
     setDate(state, data) {
-      state.date = data;
+      state.city.date = data;
     },
     setError(state, status) {
       state.isError = status;
@@ -115,6 +122,9 @@ const store = createStore({
     },
     setDarkTheme(state, status) {
       state.isDarkTheme = status;
+    },
+    setLoader(state, status) {
+      state.loader = status;
     }
   }
 });

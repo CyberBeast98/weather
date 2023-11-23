@@ -1,5 +1,5 @@
 <template>
-  <div class="weather__block flex--column-center" :class="{'weather__block--dark': isDarkTheme}">
+  <div class="weather__block flex--column-center" :class="{ 'bg--dark': isDarkTheme }">
     <Name
         :countryName="countryName"
         :cityName="cityName"
@@ -57,10 +57,6 @@ export default {
   background-color: $white;
   box-sizing: border-box;
   box-shadow: 0 0 49px -17px rgba(0, 0, 0, 0.75);
-}
-
-.weather__block--dark {
-  background-color: #22272e;
 }
 
 @media only screen and (max-width: 600px) {

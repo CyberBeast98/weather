@@ -1,0 +1,22 @@
+{
+  "navBar": {
+    "currentWeather": "Current Weather",
+    "5days": "5 Days Weather",
+    "charts": "Charts"
+  },
+  "placeholder": "Enter a city",
+  "temperature": {
+    "title": "Temperature",
+    "min": "Min",
+    "max": "Max"
+  },
+  "wind": {
+    "title": "Wind",
+    "speed": "Speed",
+    "gust": "Gust",
+    "degrees": "Degrees"
+  },
+  "charts": {
+    "temperatureToday": "Temperature for today"
+  }
+}

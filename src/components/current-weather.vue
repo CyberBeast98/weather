@@ -3,10 +3,10 @@
     <Search />
     <Card
         v-if="isSuccess === 200 && !isError"
-        :countryName="name.country"
-        :cityName="name.city"
-        :stateName="name.stateName"
-        :dateUNIX="date"
+        :countryName="city.name.country"
+        :cityName="city.name.city"
+        :stateName="city.name.stateName"
+        :dateUNIX="city.date"
         :weather="weather"
         :icon="weatherIcon"
         :main="main"
@@ -31,11 +31,8 @@ export default {
       isSuccess(state) {
         return state.isSuccess;
       },
-      name(state) {
-        return state.name;
-      },
-      date(state) {
-        return state.date;
+      city(state) {
+        return state.city;
       },
       weatherIcon(state) {
         return state.icon;

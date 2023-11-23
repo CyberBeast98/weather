@@ -1,6 +1,11 @@
 @import 'datepicker.scss';
 @import 'variables';
 
+button {
+  border: none;
+  cursor: pointer;
+}
+
 .description {
   margin-bottom: 10px;
   font-size: 20px;
@@ -13,6 +18,14 @@
 
 .full-height {
   height: 100vh !important;
+}
+
+.bg--dark.bg--dark {
+  background-color: $bg-dark;
+}
+
+.text-light.text-light {
+  color: $white;
 }
 
 .flex--wrap {
@@ -46,6 +59,13 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+}
+
+.flex--column-between {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
 }
 
 .link {

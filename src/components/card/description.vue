@@ -1,12 +1,11 @@
 <template>
   <div class="description__block full-width flex--column-center">
     <img :src="setIcon" class="description__image" alt="weather">
-    <span>{{ weather.main }}</span>
+    <span>{{ description }}</span>
   </div>
 </template>
 
 <script>
-
 import Cloud from '../../assets/cloud.png'
 import Clear from '../../assets/clear.png'
 import Rain from '../../assets/rain.png'
@@ -34,6 +33,22 @@ export default {
           break;
       }
       return false;
+    },
+    description() {
+      const isUALang = this.$i18n.locale === 'ua';
+
+      switch (true) {
+        case (isUALang && this.weather.main === 'Clouds'):
+          return 'Хмари';
+        case (isUALang && this.weather.main === 'Clear'):
+          return 'Ясно';
+        case (isUALang && this.weather.main === 'Rain'):
+          return 'Дощ';
+        case (isUALang && this.weather.main === 'Snow'):
+          return 'Сніг';
+      }
+
+      return this.weather.main
     }
   }
 }
